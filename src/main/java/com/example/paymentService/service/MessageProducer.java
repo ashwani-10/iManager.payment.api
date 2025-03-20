@@ -10,14 +10,14 @@ public class MessageProducer {
     @Autowired
     KafkaProducerService kafkaProducer;
 
-    public void sendToPaymentSuccess(String orderId) throws JsonProcessingException {
+    public void sendToPaymentSuccess(String orderId,Integer amount) throws JsonProcessingException {
         final String topic = "Payment-Success";
 
         int retries = 3;
 
         while (retries-- > 0) {
             try {
-                kafkaProducer.produceMessage(orderId,"order-id",topic);
+                kafkaProducer.produceMessage(amount/100,orderId,topic);
                 return;
             }catch (Exception e) {
                 if (retries == 0) {

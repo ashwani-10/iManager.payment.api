@@ -35,7 +35,7 @@ public class RazorPayWebhookController {
             String paymentId = (String) paymentEntity.get("id");
             Integer amount = (Integer) paymentEntity.get("amount");
             System.out.println(status);
-            messageProducer.sendToPaymentSuccess(orderId);
+            messageProducer.sendToPaymentSuccess(orderId,amount);
 
             System.out.println("Received razorpay Webhook: "+event+" for order id: "+orderId+"payment id: "+paymentId+"for amount: "+amount);
             return ResponseEntity.ok("Webhook processed successfully");

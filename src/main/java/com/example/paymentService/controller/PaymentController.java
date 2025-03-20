@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/payments")
-@CrossOrigin(origins = {"http://localhost:63342","http://127.0.0.1:5500"})
+@CrossOrigin("*")
 public class PaymentController {
     @Autowired
     PaymentService paymentService;
@@ -22,5 +22,10 @@ public class PaymentController {
         }catch (Exception e){
             throw new RuntimeException("failed transaction");
         }
+    }
+
+    @GetMapping("/docker")
+    public String dockerTest(){
+        return "Docker connected with payment service";
     }
 }
